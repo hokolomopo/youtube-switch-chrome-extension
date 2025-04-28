@@ -1,20 +1,9 @@
-let color = "#3aa757";
+chrome.action.onClicked.addListener(async (tab) => {
+    if (tab && tab.url && tab.url.includes("youtube")) {
+        const url = tab.url.includes("www")
+            ? tab.url.replace("www", "music")
+            : tab.url.replace("music", "www");
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ color });
-  console.log("Default background color set to %cgreen", `color: ${color}`);
-});
-
-chrome.browserAction.onClicked.addListener(function (tab) {
-  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-    let url = tabs[0].url + "";
-    if (url.includes("www")) {
-      url = url.replace("www", "music");
-    } else {
-      url = url.replace("music", "www");
+        chrome.tabs.update(tab.id, { url });
     }
-    chrome.tabs.update({
-      url: url,
-    });
-  });
 });
