@@ -1,0 +1,25 @@
+{
+    "name": "Youtube Switch",
+    "version": "1.0",
+    "description": "Switch between classic YouTube and YouTube Music",
+    "manifest_version": 3,
+    "permissions": ["storage", "activeTab"],
+    "host_permissions": ["http://localhost:8000/*"],
+    "icons": {
+        "128": "icons/icon128.png",
+        "48": "icons/icon48.png"
+    },
+    "web_accessible_resources": [],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "js": ["toast.js", "content.js"],
+            "matches": ["https://*.youtube.com/*"]
+        }
+    ],
+    "action": {
+        "default_icon": "icons/icon48.png"
+    }
+}

@@ -6,12 +6,12 @@
     "permissions": ["storage", "activeTab"],
     "host_permissions": ["http://localhost:8000/*"],
     "icons": {
-        "128": "images/icon128.png",
-        "48": "images/icon48.png"
+        "128": "icons/icon128.png",
+        "48": "icons/icon48.png"
     },
     "web_accessible_resources": [],
     "background": {
-        "service_worker": "background.js"
+        "scripts": ["background.js"]
     },
     "content_scripts": [
         {
@@ -20,6 +20,12 @@
         }
     ],
     "action": {
-        "default_icon": "images/icon48.png"
+        "default_icon": "icons/icon48.png"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "youtube-switch@yourdomain.com",
+            "strict_min_version": "109.0"
+        }
     }
 }
